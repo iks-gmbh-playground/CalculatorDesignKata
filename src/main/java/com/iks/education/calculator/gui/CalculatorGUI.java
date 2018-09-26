@@ -10,23 +10,26 @@ import javax.swing.JPanel;
 import com.iks.education.calculator.auxiliary.Operator;
 import com.iks.education.calculator.gui.buttons.CButton;
 import com.iks.education.calculator.gui.buttons.CEButton;
+import com.iks.education.calculator.gui.buttons.CommaButton;
 import com.iks.education.calculator.gui.buttons.DELButton;
 import com.iks.education.calculator.gui.buttons.ExecuteButton;
 import com.iks.education.calculator.gui.buttons.NumberButton;
 import com.iks.education.calculator.gui.buttons.OperatorButton;
+import com.iks.education.calculator.gui.buttons.SignButton;
 import com.iks.education.calculator.gui.display.InputField;
 import com.iks.education.calculator.gui.display.TermDisplayField;
 
 public class CalculatorGUI {
 
-	private static final int WINODW_WIDTH = 400;
-	private static final int WINODW_HEIGHT = 400;
+	private static final int WINDOW_WIDTH = 400;
+	private static final int WINDOW_HEIGHT = 400;
 	
 	public static InputField inputField = new InputField();
+	public static TermDisplayField termDisplayField = new TermDisplayField();
 
 	public void setupGUI() {
 		JFrame window = new JFrame("Calculator");
-		window.setSize(WINODW_WIDTH, WINODW_HEIGHT);
+		window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		window.setLocationRelativeTo(null);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -64,9 +67,9 @@ public class CalculatorGUI {
 		buttonPanel.add(new NumberButton("3"));
 		buttonPanel.add(new OperatorButton(Operator.ADD));
 
-		buttonPanel.add(new NumberButton("+-"));
+		buttonPanel.add(new SignButton());
 		buttonPanel.add(new NumberButton("0"));
-		buttonPanel.add(new NumberButton(","));
+		buttonPanel.add(new CommaButton());
 		buttonPanel.add(new ExecuteButton());
 
 		contentPane.add(buttonPanel, position);
@@ -74,7 +77,7 @@ public class CalculatorGUI {
 
 	private void addDisplayArea(Container contentPane, String position) {
 		JPanel displayPanel = new JPanel(new GridLayout(2, 1));
-		displayPanel.add(new TermDisplayField());
+		displayPanel.add(termDisplayField);
 		displayPanel.add(inputField);
 
 		contentPane.add(displayPanel, position);

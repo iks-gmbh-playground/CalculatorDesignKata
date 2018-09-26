@@ -9,19 +9,17 @@ import com.iks.education.calculator.controller.CalculatorController;
 import com.iks.education.calculator.gui.CalculatorGUI;
 
 @SuppressWarnings("serial")
-public class CEButton extends JButton {
+public class CommaButton extends JButton {
 
-	public CEButton() {
-		super();
-		setText("CE");
+	public CommaButton() {
+		super(",");
 		addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				String displayText = CalculatorController.getInstance().cleanInput();
+			public void actionPerformed(ActionEvent e) {
+				String displayText = CalculatorController.getInstance().appendComma();
 				
 				CalculatorGUI.inputField.setText(displayText);
-				
 			}
 		});
 	}

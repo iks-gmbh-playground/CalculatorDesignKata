@@ -1,8 +1,10 @@
 package com.iks.education.calculator.controller;
 
+import com.iks.education.calculator.model.NumberModel;
+
 public class CalculatorController {
 
-	private String term = "";
+	private NumberModel numberModel = new NumberModel("0");
 	private static CalculatorController instance;
 	
 	private CalculatorController() {
@@ -17,33 +19,32 @@ public class CalculatorController {
 	}
 	
 	public String appendDigit(String digit) {
-		if ("+-".equals(digit)) {
-			if (term.contains("-")) {
-				term = term.replace("-", "");
-			} else {
-				term = "-" + term;
-			}
-		} else if (!appendComma(digit)) {
-			term += digit;	
-		}
-		return term;
+		return numberModel.appendDigit(digit);
 	}
 
-	private boolean appendComma(String digit) {
-		if (",".equals(digit)) {
-			if (term.length() < 1) {
-				term = "0,";
-			} else if (!term.contains(",")) {
-				term += ",";
-			}
-			return true;
-		}
-		return false;
+	public String appendComma() {
+		return numberModel.appendComma();
 	}
 
 	public String cleanInput() {
-		term = "";
-		return term;
+		return numberModel.cleanInput();
+	}
+
+	NumberModel getNumberModel() {
+		return numberModel;
+	}
+
+	public String toggleSign() {
+		return numberModel.toggleSign();
+	}
+
+	public String deleteLastElement() {
+		
+		return numberModel.deleteLastElement();
+	}
+
+	public String appendOperator(String operator) {
+		return numberModel.getValue() + operator;
 	}
 
 }

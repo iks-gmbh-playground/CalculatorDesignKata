@@ -1,12 +1,12 @@
-package calculator;
+package com.iks.education.calculator.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.iks.education.calculator.controller.CalculatorController;
+import com.iks.education.calculator.model.NumberModel;
 
 class CalculatorTest {
 	
@@ -27,10 +27,10 @@ class CalculatorTest {
 	void justAcceptOneComma() {
 		//Arrange
 		calc.appendDigit("1");
-		calc.appendDigit(",");
+		calc.appendComma();
 		
 		//Act
-		String actual = calc.appendDigit(",");
+		String actual = calc.appendComma();
 		
 		//Assert
 		assertEquals("1,", actual);
@@ -53,7 +53,7 @@ class CalculatorTest {
 		//Arrange
 		
 		//Act
-		String actual = calc.appendDigit(",");
+		String actual = calc.appendComma();
 		
 		//Assert
 		assertEquals("0,", actual);
@@ -62,7 +62,7 @@ class CalculatorTest {
 	@Test
 	void displayZeroCommaThreeWhenCommaIsClickedBeforeAnyNumberAndThenThreeIsClicked() {
 		//Arrange
-		calc.appendDigit(",");
+		calc.appendComma();
 		
 		//Act
 		String actual = calc.appendDigit("3");
@@ -76,12 +76,12 @@ class CalculatorTest {
 		//Arrange
 		calc.appendDigit("1");
 		//Act
-		String actual = calc.appendDigit("+-");
+		String actual = calc.toggleSign();
 		
 		//Assert
 		assertEquals("-1", actual);
 		
-		actual = calc.appendDigit("+-");
+		actual = calc.toggleSign();
 		
 		assertEquals("1", actual);
 	}
@@ -95,12 +95,74 @@ class CalculatorTest {
 		String actual = calc.cleanInput();
 		
 		//Assert
-		assertEquals("", actual);
+		assertEquals("0", actual);
+	}
+	
+	@Test 
+	void isZeroAtInitialization() {
+		//Assert
+		assertEquals(new NumberModel("0"), calc.getNumberModel());
+	}
+	
+	@Test
+	void removeLastDigit () {
+		//Arrange
+		calc.appendDigit("1");
+		calc.appendDigit("2");
+
+
+		//Act
+		String actual = calc.deleteLastElement();
+
+		//Assert
+		assertEquals("1", actual);
+	}
+	
+	@Test
+	void displayZeroWhenLastDigitIsDeleted () {
+		//Arrange
+		calc.appendDigit("1");
+		String actual = calc.deleteLastElement();
+		assertEquals("0", actual);
+
+		//Act
+		actual = calc.deleteLastElement();
+
+		//Assert
+		assertEquals("0", actual);
+	}	
+	
+	@Test
+	void avoidIndexOutOfBoundsExceptionWhenDeleting () {
+		//Arrange
+		calc.appendDigit("1");
+		String actual = calc.deleteLastElement();
+
+		//Act
+		actual = calc.deleteLastElement();
+
+		//Assert
+		assertEquals("0", actual);
+	}
+	
+	@Test
+	void termDisplayFieldShouldDisplayValueAndOperator() {
+		//Arrange
+		calc.appendDigit("1");
+		calc.appendDigit("2");
+				
+		//Act
+		String actual = calc.appendOperator("+");
+
+		//Assert
+		assertEquals("12+", actual);
 	}
 	
 	@AfterEach
 	void cleanUp() {
 		calc.cleanInput();
 	}
+	
+	
 
 }
