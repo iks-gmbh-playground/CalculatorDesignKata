@@ -72,5 +72,9 @@ public class NumberModel {
 		return value;
 	}
 
+	public double getValueAsDouble() {
+		return Double.parseDouble(value);
+	}
+
 
 }
