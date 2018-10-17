@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import com.iks.education.calculator.controller.CalculatorController;
-import com.iks.education.calculator.gui.CalculatorGUI;
 
 @SuppressWarnings("serial")
 public class CEButton extends JButton {
@@ -18,10 +17,7 @@ public class CEButton extends JButton {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String displayText = CalculatorController.getInstance().cleanInput();
-				
-				CalculatorGUI.inputField.setText(displayText);
-				
+				CalculatorController.getInstance().cleanInput();
 			}
 		});
 	}

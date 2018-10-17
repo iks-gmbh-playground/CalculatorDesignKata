@@ -2,12 +2,25 @@ package com.iks.education.calculator.gui.display;
 
 import javax.swing.JTextField;
 
-@SuppressWarnings("serial")
-public class InputField extends JTextField {
+import com.iks.education.calculator.controller.CalculatorController;
+import com.iks.education.calculator.model.CalculatorModel;
+import com.iks.education.calculator.model.Observer;
 
+@SuppressWarnings("serial")
+public class InputField extends JTextField implements Observer {
+
+	private CalculatorModel calculatorModel = null;
+	
 	public InputField() {
+		calculatorModel = CalculatorController.getInstance().getNumberModel();
+		calculatorModel.register(this);
 		setEditable(false);
 		setHorizontalAlignment(JTextField.RIGHT);
+	}
+
+	@Override
+	public void notifyOfChange() {
+		setText(calculatorModel.getValue());
 	}
 
 }

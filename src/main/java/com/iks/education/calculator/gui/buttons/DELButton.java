@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import com.iks.education.calculator.controller.CalculatorController;
-import com.iks.education.calculator.gui.CalculatorGUI;
 
 @SuppressWarnings("serial")
 public class DELButton extends JButton {
@@ -18,9 +17,7 @@ public class DELButton extends JButton {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String displayText = CalculatorController.getInstance().deleteLastElement();
-				
-				CalculatorGUI.inputField.setText(displayText);
+				CalculatorController.getInstance().deleteLastElement();
 			}
 		});
 	}

@@ -1,10 +1,10 @@
 package com.iks.education.calculator.controller;
 
-import com.iks.education.calculator.model.NumberModel;
+import com.iks.education.calculator.model.CalculatorModel;
 
 public class CalculatorController {
 
-	private NumberModel numberModel = new NumberModel("0");
+	private CalculatorModel numberModel = new CalculatorModel("0");
 	private static CalculatorController instance;
 	
 	private CalculatorController() {
@@ -27,10 +27,10 @@ public class CalculatorController {
 	}
 
 	public String cleanInput() {
-		return numberModel.cleanInput();
+		return numberModel.clearValue();
 	}
 
-	NumberModel getNumberModel() {
+	public CalculatorModel getNumberModel() {
 		return numberModel;
 	}
 
@@ -40,11 +40,13 @@ public class CalculatorController {
 
 	public String deleteLastElement() {
 		
-		return numberModel.deleteLastElement();
+		return numberModel.deleteLastDigit();
 	}
 
 	public String appendOperator(String operator) {
-		return numberModel.getValue() + operator;
+		numberModel.calculateIntermediateResult(numberModel, operator);
+		numberModel.clearValue();
+		return numberModel.getLog();
 	}
 
 }

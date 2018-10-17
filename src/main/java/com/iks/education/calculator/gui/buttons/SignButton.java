@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import com.iks.education.calculator.controller.CalculatorController;
-import com.iks.education.calculator.gui.CalculatorGUI;
 
 @SuppressWarnings("serial")
 public class SignButton extends JButton {
@@ -17,9 +16,7 @@ public class SignButton extends JButton {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String displayText = CalculatorController.getInstance().toggleSign();
-				
-				CalculatorGUI.inputField.setText(displayText);
+				 CalculatorController.getInstance().toggleSign();
 			}
 		});
 	}

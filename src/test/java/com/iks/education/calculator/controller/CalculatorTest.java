@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import com.iks.education.calculator.controller.CalculatorController;
-import com.iks.education.calculator.model.NumberModel;
+import com.iks.education.calculator.model.CalculatorModel;
 
 class CalculatorTest {
 	
@@ -101,7 +101,7 @@ class CalculatorTest {
 	@Test 
 	void isZeroAtInitialization() {
 		//Assert
-		assertEquals(new NumberModel("0"), calc.getNumberModel());
+		assertEquals(new CalculatorModel("0"), calc.getNumberModel());
 	}
 	
 	@Test
